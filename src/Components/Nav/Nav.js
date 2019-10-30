@@ -24,19 +24,14 @@ class Nav extends Component {
   };
 
   login = async () => {
-    const { email, password } = this.state;
-    const res = await axios.post('/auth/login', { email, password })
-    if (res.data.user) {
+    const { username, password } = this.state;
+    const res = await axios.post('/auth/login', { username, password })
       this.props.updateUser(res.data.user)
       this.props.history.push('/dashboard')
-      this.setState({
-          password: ''
-      })
       swal.fire(res.data.message)
-    } else {
     swal.fire(res.data.message).catch(err =>console.log(err))
-    }
-  };
+    
+}
 
 
   logout = () => {
@@ -99,12 +94,11 @@ class Nav extends Component {
     );
   }
 }
-
 function mapStateToProps(reduxState) {
-    const { user } = reduxState.reducer
-    return { user };
-  }
-  
+    const {user} = reduxState
+    return {user}
+}
+
 
 export default withRouter(connect(
   mapStateToProps,

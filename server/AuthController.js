@@ -22,14 +22,13 @@ const login = async (req, res) => {
     const foundUser = await db.find_user([username]);
 
     if(!foundUser[0]) {
-        return res.status(403).send('Username or Password incorrect, please try again.')
+        return res.status(403).send('User not found - please register')
     }; 
 
     const authedPassword = bcrypt.compareSync(password, foundUser[0].password); 
 
     if(authedPassword) {
         delete foundUser[0].password;
-        req.session.userid = foundUser[0].id;
         const user = foundUser[0]
         req.session.user = {user}
         res.status(200).send({message: `Welcome Back ${username}`, user: req.session.user, loggedIn: true}); 
@@ -40,12 +39,11 @@ const login = async (req, res) => {
 };
 
 
-
-
 const logout = (req, res) => {
     req.session.destroy();
-    res.send('user logged out')
+    res.status(200).send({message: `Goodbye`,loggedIn: false})
 }
+
 
 module.exports ={
     register, 

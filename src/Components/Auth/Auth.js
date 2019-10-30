@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { updateUser } from "../../ducks/reducer";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import swal from "sweetalert2";
 
@@ -56,7 +56,7 @@ class Auth extends Component {
             type='current-password'
             onChange={e => this.handleChange(e, "password")}
           ></input>
-       <Link to ='/dashboard'><button onClick={this.register}> Register </button></Link> 
+     <button onClick={this.register}> Register </button>
         </form>
 
         <div>
@@ -67,8 +67,11 @@ class Auth extends Component {
   }
 }
 
+function mapStateToProps(reduxState) {
+    const {user} = reduxState
+    return {user}
+}
 
-  
-  export default withRouter(connect(null,
+  export default withRouter(connect(mapStateToProps,
     { updateUser}
   )(Auth));
