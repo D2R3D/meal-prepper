@@ -3,7 +3,7 @@ const bcrypt = require ('bcryptjs')
 const register = async (req, res) => {
     const db = req.app.get('db')
     const {username, email, password, profile_pic} = req.body
-    const foundUser = await db.find_user([username])
+    const foundUser = await db.find_user(username)
     if(foundUser[0]) {
         return res.status(409).send('sorry username already taken')
     }
@@ -17,9 +17,9 @@ const register = async (req, res) => {
 
 
 const login = async (req, res) => {
-    const { username, password } = req.body; 
     const db = req.app.get('db'); 
-    const foundUser = await db.find_user([username]);
+    const {username, password} = req.body; 
+    const foundUser = await db.find_user(username)
 
     if(!foundUser[0]) {
         return res.status(403).send('User not found - please register')

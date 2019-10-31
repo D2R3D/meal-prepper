@@ -1,19 +1,33 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { updateUser } from "../../ducks/reducer";
+import store, { updateUser } from "../../ducks/store";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import swal from "sweetalert2";
+import './Auth.css'
+
 
 class Auth extends Component {
   constructor(props) {
     super(props);
+    const reduxState =store.getState()
     this.state = {
-      username: "",
-      email: '',
-      password: ""
+      username: reduxState.username,
+      email: reduxState.email,
+      password: reduxState.password
     };
   }
+  componentDidMount() {
+    this.unsubscribe =store.subscribe(() => {
+      const reduxState = store.getState() 
+      this.setState({username: reduxState.username,
+      email: reduxState.email, password: reduxState.password})
+    })
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe()
+}
 
   handleChange = (e, key) => {
     this.setState({
@@ -38,25 +52,26 @@ class Auth extends Component {
  
   render() {
     return (
-      <div>
-        <form className="register box">
+      <div className ='auth-box'>
+        <form className="register-box">
           <input
-            value={this.state.username}
+            type='text'
             placeholder="Username"
             onChange={e => this.handleChange(e, "username")}
           ></input>
           <input
-            value={this.state.email}
+            type ='email'
             placeholder="Email"
             onChange={e => this.handleChange(e, "email")}
           ></input>
           <input
-            value={this.state.password}
+            type ='password'
             placeholder="Password"
-            type='current-password'
             onChange={e => this.handleChange(e, "password")}
           ></input>
+          <div>
      <button onClick={this.register}> Register </button>
+        </div>
         </form>
 
         <div>

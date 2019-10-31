@@ -1,5 +1,35 @@
+
+
+
 .logged-in{
-    height: 20vh;
+    height: 10vh;
     width: 100vw;
-    background: blue
+    background: rgb(129, 129, 255);
 }
+.user-nav-info{
+    display: flex;
+    justify-content: space-around;
+}
+
+.login-nav{
+    height: 10vh;
+    width: 100vw;
+    background: rgb(180, 88, 180);
+}
+
+.prof-img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background: rgb(243, 223, 179)
+}
+
+@media(max-width: 400px){
+    .logged-in {
+        height: 10vh;
+        width: 100vw;
+        background: rgb(0, 195, 255);
+    }
+}
+
+

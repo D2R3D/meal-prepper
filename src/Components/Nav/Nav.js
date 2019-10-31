@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import swal from "sweetalert2";
 import { connect } from "react-redux";
-import { updateUser, logout } from "../../ducks/reducer";
+import store, { updateUser, logout } from "../../ducks/store";
 import {withRouter, Link} from 'react-router-dom'
 import './Nav.css'
 
@@ -10,12 +10,24 @@ import './Nav.css'
 class Nav extends Component {
   constructor(props) {
     super(props);
+    const reduxState = store.getState()
     this.state = {
-      email: "",
-      password: "",
+      username: reduxState.username,
+      password: reduxState.password
     };
   }
 
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(() => {
+      const reduxState = store.getState() 
+      this.setState({username: reduxState.username,
+       password: reduxState.password})
+    })
+  }
+  
+  componentWillUnmount() {
+    this.unsubscribe()
+}
 
   handleChange = (e, key) => {
     this.setState({
@@ -26,13 +38,18 @@ class Nav extends Component {
   login = async () => {
     const { username, password } = this.state;
     const res = await axios.post('/auth/login', { username, password })
+    if (res.data.user) {
       this.props.updateUser(res.data.user)
       this.props.history.push('/dashboard')
+      this.setState({
+          password: ''
+      })
       swal.fire(res.data.message)
+    } else {
     swal.fire(res.data.message).catch(err =>console.log(err))
+    }
+  };
     
-}
-
 
   logout = () => {
     axios.delete("/auth/logout/").then(res => {
@@ -42,17 +59,21 @@ class Nav extends Component {
     })
   }
   render() {
-      
     return (
-      // <div className='Navbar'>
+     
       <div className="logged-in">
        
            {this.props.user ? (
             <div className='user-nav-info'>
-               <Link to='/profile'> Profile <img className='prof-img' src={this.props.user.user.profile_pic} alt='prof-pic'/> </Link> 
-                 <p>{this.props.user.user.username} </p>
-                 <Link to='/dashboard' > <button className='nav-btns'>Dashboard</button>  </Link>
-          <button className="nav-btns" onClick={this.logout}> Logout </button>
+                <p>Welcome {this.props.user.user.username} </p>
+                <nav>
+
+                </nav>
+               <Link to='/profile'><img className='prof-img' src={this.props.user.user.profile_pic} alt='prof-pic'/><button>Profile</button></Link> 
+                 
+                 <Link to='/dashboard'><button className='nav-btns'>Dashboard</button></Link>
+                 <Link to ='/browse'><button>Browse/Search</button></Link>
+          <button className="nav-btns" onClick={this.logout}>Logout</button>
     {/* <div className='nav-dropdown'>
       <nav>
         <li>Profile</li>
@@ -65,7 +86,7 @@ class Nav extends Component {
 
       </nav>
       </div> */}
-       
+    
           
             </div>
 
@@ -74,7 +95,7 @@ class Nav extends Component {
         
           <form className="nav-button-container">
             <input
-              onChange={e => this.handleChange(e, "email")}
+              onChange={e => this.handleChange(e, "username")}
               type="text"
               placeholder="Username"
             />
@@ -84,7 +105,7 @@ class Nav extends Component {
               placeholder="Password"
             ></input>
 
-            <button onClick={this.login}> Login</button>
+            <button onClick={this.login}>Login</button>
           </form>
           </div>
         )}

@@ -1,0 +1,22 @@
+.recipe-box{
+    width: 100vw;
+    height: 100vh;
+    background: gray;
+  
+}
+
+.recipe-form{
+    width: 80vw;
+    height: 90vh;
+    background: yellow;
+    display: flex;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%
+
+}
+
+.input-boxes{
+    width: 30%;
+    height: 50%;
+}
