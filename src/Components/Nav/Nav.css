@@ -24,7 +24,7 @@
     background: rgb(243, 223, 179)
 }
 
-@media(max-width: 400px){
+@media(max-width: 450px){
     .logged-in {
         height: 10vh;
         width: 100vw;

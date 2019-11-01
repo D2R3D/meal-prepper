@@ -14,14 +14,15 @@ class Auth extends Component {
     this.state = {
       username: reduxState.username,
       email: reduxState.email,
-      password: reduxState.password
+      password: reduxState.password,
+      favorite_foods: reduxState.favorite_foods
     };
   }
   componentDidMount() {
     this.unsubscribe =store.subscribe(() => {
       const reduxState = store.getState() 
       this.setState({username: reduxState.username,
-      email: reduxState.email, password: reduxState.password})
+      email: reduxState.email, password: reduxState.password, favorite_foods: reduxState.favorite_foods})
     })
   }
 
@@ -36,12 +37,13 @@ class Auth extends Component {
   };
 
   register = async () => {
-    const { username, email, password } = this.state;
+    const { username, email, password, favorite_foods } = this.state;
     const profile_pic = `https://robohash.org/${username}`;
     const res = await axios.post("/auth/register", {
       username,
       email,
       password,
+      favorite_foods,
       profile_pic
     });
     this.props.updateUser(res.data.user);
@@ -55,17 +57,20 @@ class Auth extends Component {
       <div className ='auth-box'>
         <form className="register-box">
           <input
+           autoComplete='current-username'
             type='text'
             placeholder="Username"
             onChange={e => this.handleChange(e, "username")}
           ></input>
           <input
             type ='email'
+            autoComplete='current-email'
             placeholder="Email"
             onChange={e => this.handleChange(e, "email")}
           ></input>
           <input
-            type ='password'
+            autoComplete ='current-password'
+            type='password'
             placeholder="Password"
             onChange={e => this.handleChange(e, "password")}
           ></input>

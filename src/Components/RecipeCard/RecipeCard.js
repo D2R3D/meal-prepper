@@ -1,4 +1,5 @@
 import React from 'react'
+import './RecipeCard.css'
 
 
 let RecipeCard = props => {
@@ -17,8 +18,9 @@ let RecipeCard = props => {
     });
 
     return (
-        <div>
-        <div className="title_container">
+      <div className ='recipe-book'>
+        <div className ='recipe-card'>
+        <div className="title-container">
         <h2>{name}</h2>
         <p>
         by {author}
@@ -36,6 +38,8 @@ let RecipeCard = props => {
       </div>
 
       </div>
+
+  </div>
     )
 }
 

@@ -1,5 +1,7 @@
 import {createStore} from 'redux'
 
+
+
 const initialState ={
     user:null,
     loggedIn: false,
@@ -61,6 +63,7 @@ export const UPDATE_USER ='UPDATE_USER'
             } 
             const newRecipe =[...state.recipes, recipe]
             return {...state, recipes: newRecipe}
+
         default: 
         return state
     }
@@ -71,6 +74,14 @@ export function updateUser (user) {
     return {
         type: UPDATE_USER,
         payload: user
+    }
+}
+
+export function addRecipe(recipes){
+    return {
+        type: ADD_RECIPE,
+        payload: recipes,
+        
     }
 }
 

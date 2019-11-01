@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import store, {ADD_INSTRUCTIONS, ADD_RECIPE} from '../../ducks/store'
 import {Link} from 'react-router-dom'
+// import axios from 'axios';
 
 
 
@@ -46,11 +47,16 @@ export default class AddRecipe3 extends Component {
           input: ""
         });
       }
-      create() {
+    //   addRecipe = () =>{
+    //              const res = await axios.post(`/user/recipe/${id}`, {name: this.props.name, author: this.props.author, category: this.props.category, ingredients: this.props.ingredients, instructions: this.state.instructions} )
+    //     this.props.addRecipe(res.data.recipe)
+    //   }
+      create(){
         store.dispatch({
           type: ADD_RECIPE,
           payload: this.state.input
         })
+         
     
         this.setState({input:""})
         // Create new recipe in Redux state

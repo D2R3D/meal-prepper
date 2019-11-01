@@ -4,6 +4,7 @@ const massive = require('massive')
 const session = require('express-session')
 const cors = require('cors')
 const authCtrl = require('./AuthController')
+const userCtrl = require('./UserController')
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 const app = (express())
@@ -22,6 +23,9 @@ app.use(session({
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
 app.delete('/auth/logout', authCtrl.logout)
+
+app.put('/user/foods/:id', userCtrl.favFoods)
+app.post(`/user/recipe/:id`, userCtrl.addRecipe)
 
 
 massive(CONNECTION_STRING).then(db => {

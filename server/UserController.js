@@ -1,13 +1,27 @@
- const favFoods = async (req, res) => {
+ const favFoods = (req, res) => {
+    const id = req.session.userid
     const db = req.app.get('db')
     const {favorite_foods} = req.body
-    const userFood = await db.add_favs(favorite_foods)
-    const user = userFood[0].favorite_foods
-    req.session.user = {user}
+    db.add_favs([favorite_foods, id]).then(() => {
+        res.status(200).send('Favorite Foods Updated')
+    }).catch(err => console.log(err))
 
-    res.status(200).send({message:'Updated Foods', user: req.session.user, loggedIn: true})
+
+ }
+
+const addRecipe = (req,res)=> {
+    const id = req.session.userid
+    const {name, author, category, ingredients, instructions} = req.body
+    const db = req.app.get('db')
+    db.add_recipe([name, author, category, ingredients, instructions, id]).then(() => {
+        res.status(200).send('recipe added')
+    }).catch(err => console.log(err))
+    
+
+
 }
 
 module.exports ={
-    favFoods
+    favFoods,
+    addRecipe
 }
