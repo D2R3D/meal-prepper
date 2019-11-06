@@ -25,7 +25,10 @@ app.post('/auth/login', authCtrl.login)
 app.delete('/auth/logout', authCtrl.logout)
 
 app.put('/user/foods/:id', userCtrl.favFoods)
-app.post(`/user/recipe/:id`, userCtrl.addRecipe)
+app.post(`/user/addRecipe/:id`, userCtrl.submitRecipe)
+app.get('/user/dashboard/:id', userCtrl.dashboardRecipes)
+app.get('/user/allRecipes', userCtrl.allRecipes)
+app.get('/user/recipes' , userCtrl.userRecipes)
 
 
 massive(CONNECTION_STRING).then(db => {

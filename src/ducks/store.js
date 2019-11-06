@@ -3,14 +3,16 @@ import {createStore} from 'redux'
 
 
 const initialState ={
-    user:null,
+    user: null,
     loggedIn: false,
     name: '',
     author: '',
     category: '',
     ingredients: [],
     instructions: [],
-    recipes:[]
+    recipe_img: '',
+    recipes:[],
+    input: ''
 }
 
 export const UPDATE_USER ='UPDATE_USER'
@@ -20,6 +22,8 @@ export const UPDATE_USER ='UPDATE_USER'
  export const ADD_INGREDIENTS = 'ADD_INGREDIENTS'
  export const ADD_INSTRUCTIONS ='ADD_INSTRUCTIONS'
  export const ADD_RECIPE = 'ADD_RECIPE'
+ export const ADD_IMG ='ADD_IMG'
+//  export const DELETE_RECIPE = 'DELETE_RECIPE'
  export const LOGOUT ='LOGOUT'
 
  export function reducer(state = initialState, action) {
@@ -37,6 +41,10 @@ export const UPDATE_USER ='UPDATE_USER'
         case UPDATE_CATEGORY:
             return {...state, category: payload};
 
+        case ADD_IMG: 
+            return{...state, recipe_img: payload}
+    
+
         case ADD_INGREDIENTS:
             const newIngredients =[...state.ingredients, payload]
             return {...state, ingredients: newIngredients};
@@ -44,14 +52,17 @@ export const UPDATE_USER ='UPDATE_USER'
         case ADD_INSTRUCTIONS:
             const newInstructions =[...state.instructions, payload]
             return {...state, instructions: newInstructions}
-
+    
+      
         case ADD_RECIPE:
+            
             const{
                 name,
                 author,
                 category,
                 ingredients,
                 instructions,
+                recipe_img
             } = state;
 
             const recipe ={
@@ -59,11 +70,13 @@ export const UPDATE_USER ='UPDATE_USER'
                 author,
                 category,
                 ingredients,
-                instructions
+                instructions,
+                recipe_img
             } 
             const newRecipe =[...state.recipes, recipe]
+            
             return {...state, recipes: newRecipe}
-
+            
         default: 
         return state
     }
@@ -77,11 +90,43 @@ export function updateUser (user) {
     }
 }
 
-export function addRecipe(recipes){
-    return {
-        type: ADD_RECIPE,
-        payload: recipes,
+// export function createRecipe(recipe){
+//     return {
+//         type: ADD_RECIPE,
+//         payload: recipe
         
+//     } 
+//    }
+
+// export function createRecipe({title, author, category, ingredients, instructions}){
+//     return (dispatch) => {
+//         return axios.post(`/user/addRecipe`, {title, author, category, ingredients, instructions}).then(response => {
+//             dispatch(addRecipe(response.data))
+//         })
+//     }
+
+// }
+
+export function createRecipe (recipes){
+    return{
+        type: ADD_RECIPE,
+        payload: recipes
+    }
+}
+
+export function addIngredients(newIngredients) {
+    return {
+        type:ADD_INGREDIENTS,
+        paylod: newIngredients
+    }
+}
+
+
+export function addInstructions(newInstructions){
+    return{
+        type: ADD_INSTRUCTIONS,
+        payload: newInstructions
+    
     }
 }
 
@@ -93,4 +138,5 @@ export function logout() {
     }
 }
 
+ 
 export default createStore(reducer)

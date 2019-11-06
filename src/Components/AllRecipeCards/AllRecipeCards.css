@@ -1,0 +1,41 @@
+.recipe-box{
+    width: 40vw;
+    height: 55vh;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    justify-content: space-around;
+    background: rgb(201, 255, 201);
+    border: 2px solid rgb(0, 0, 0);
+    margin: 15px;
+    border-radius: 20px;
+    box-shadow: 10px 10px rgba(119, 118, 118, 0.582);
+}
+
+.recipe-card{
+    width: 30vw;
+    height: 40vh;
+    background: lightcoral;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;;
+    border-radius: 20px;
+}
+
+
+.list{
+    width: 20vw;
+    height: 15vh;
+    background: rgb(154, 154, 250);
+    border-radius: 20px;
+}
+
+#recipe-img{
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    
+}
+#recipe-img:hover{
+
+}

@@ -1,8 +1,9 @@
 import React from 'react';
+import 'reset-css'
 import Nav from './Components/Nav/Nav'
 import routes from './routes'
 import './App.css';
-import 'reset-css'
+
 
 function App() {
   return (

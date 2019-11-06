@@ -15,14 +15,13 @@ class Auth extends Component {
       username: reduxState.username,
       email: reduxState.email,
       password: reduxState.password,
-      favorite_foods: reduxState.favorite_foods
     };
   }
   componentDidMount() {
     this.unsubscribe =store.subscribe(() => {
       const reduxState = store.getState() 
       this.setState({username: reduxState.username,
-      email: reduxState.email, password: reduxState.password, favorite_foods: reduxState.favorite_foods})
+      email: reduxState.email, password: reduxState.password})
     })
   }
 
@@ -37,8 +36,8 @@ class Auth extends Component {
   };
 
   register = async () => {
-    const { username, email, password, favorite_foods } = this.state;
-    const profile_pic = `https://robohash.org/${username}`;
+    const { username, email, password, favorite_foods} = this.state;
+    const profile_pic = `https://api.adorable.io/avatars/285/${username}`;
     const res = await axios.post("/auth/register", {
       username,
       email,

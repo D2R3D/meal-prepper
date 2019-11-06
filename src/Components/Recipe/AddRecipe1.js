@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Recipe.css'
+// import './Recipe.css'
 import {Link} from 'react-router-dom'
 import store, {UPDATE_NAME, UPDATE_AUTHOR, UPDATE_CATEGORY} from '../../ducks/store'
 

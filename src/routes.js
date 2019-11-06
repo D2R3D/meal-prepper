@@ -23,6 +23,6 @@ export default (
     <Route path ='/recipe-step-2' component={AddRecipe2} />
     <Route path ='/my-recipes' component={UserRecipes} />
     <Route path ='/recipe-step-3' component={AddRecipe3} />
-    <Route path ='/add-recipe' component ={Recipe} />
+    <Route path ='/add-recipe' component={Recipe} />
 </Switch>
 )

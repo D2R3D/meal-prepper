@@ -23,8 +23,8 @@ export default class AddRecipe2 extends Component {
           })
         })
       }
-
-      componentWillUnmount() {
+      
+      componentWillUnmount() { 
           this.unsubscribe()
       }
 
@@ -41,7 +41,7 @@ export default class AddRecipe2 extends Component {
           payload:this.state.input
         })
         // Send data to Redux state
-        this.setState({
+        this.setState({ingredients: '',
           input: ""
         });
       }

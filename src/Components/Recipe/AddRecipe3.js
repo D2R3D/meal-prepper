@@ -43,7 +43,7 @@ export default class AddRecipe3 extends Component {
           payload: this.state.input
         })
         // Send data to Redux state
-        this.setState({
+        this.setState({instructions: '',
           input: ""
         });
       }
@@ -56,9 +56,10 @@ export default class AddRecipe3 extends Component {
           type: ADD_RECIPE,
           payload: this.state.input
         })
+      
          
     
-        this.setState({input:""})
+        this.setState({input:"", instructions: ''})
         // Create new recipe in Redux state
       }
 

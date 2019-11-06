@@ -9,11 +9,10 @@
 
  }
 
-const addRecipe = (req,res)=> {
-    const id = req.session.userid
-    const {name, author, category, ingredients, instructions} = req.body
+const submitRecipe = (req,res)=> {
+    const {name, author, category, ingredients, instructions, recipe_img} = req.body
     const db = req.app.get('db')
-    db.add_recipe([name, author, category, ingredients, instructions, id]).then(() => {
+    db.add_recipe([name, author, category, ingredients, instructions, recipe_img]).then(() => {
         res.status(200).send('recipe added')
     }).catch(err => console.log(err))
     
@@ -21,7 +20,33 @@ const addRecipe = (req,res)=> {
 
 }
 
+const allRecipes = (req, res) => {
+    const db = req.app.get('db')
+    db.get_all_recipes().then(recipes => {
+        res.status(200).send(recipes)
+    })
+}
+
+const dashboardRecipes = (req, res) => {
+    const {id} = req.session.user
+    const db = req.app.get('db')
+    db.get_dashboard(id).then(recipes => {
+        res.status(200).send(recipes)
+    })
+}
+
+const userRecipes =(req, res) => {
+    const id= req.session.user
+    const db = req.app.get('db')
+    db.user_recipes(id).then(recipes => {
+        res.status(200).send(recipes)
+    })
+}
+
 module.exports ={
     favFoods,
-    addRecipe
+    submitRecipe,
+    allRecipes,
+    dashboardRecipes,
+    userRecipes
 }

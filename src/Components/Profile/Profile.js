@@ -23,8 +23,7 @@ class Profile extends Component {
     favFoods = (id) => {
         const {favorite_foods} = this.state
         axios.put(`/user/foods/${id}`, {favorite_foods}).then(res => {
-        this.props.updateUser(res.data.user)
-        this.setState({favorite_foods: ''})
+        this.props.updateUser(res.data.user.id)
        }).catch((err) => console.log(err))
         
     }
@@ -45,11 +44,11 @@ class Profile extends Component {
                 </div>
 
                 <div className ='add-box'>
-                    <Link to ='/recipestep1'><button className='prep-btn'>Add a Recipe +</button></Link>
+                    <Link to ='/add-recipe'><button className='prep-btn'>Add a Recipe +</button></Link>
                 </div>
 
                 <div>
-                    <Link to ='/my-recipes'><button>My Recipes</button></Link>
+                    <Link to ='/my-recipes'><button className='prep-btn'>My Recipes</button></Link>
 
                 </div>
                 <div>
