@@ -2,34 +2,31 @@
     width: 100vw;
     height: 100vh;
     background-image:radial-gradient(rgb(184, 184, 255), rgb(169, 255, 169), rgb(255, 50, 84));
-    border-radius: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap
 }
 
 
-.prof-pic {
-    width: 30%;
-    height: 30%;
-    background-image:linear-gradient(rgb(143, 143, 255), rgb(49, 240, 224));
-  
-}
 
-.prof-pic img{
-    width: 50%;
-    height: 50%;
+.prep-btn img{
+    width: 75%;
+    height: 75%;
     background-image:radial-gradient(rgb(130, 221, 130), rgb(141, 141, 243));
-    border-radius: 50px;
+    border-radius: 10px;
+    align-items: center;
 }
 
 .prep-btn {
-    width: 40%;
-    height: 20vh;
+    width: 35vw;
+    height: 30vh;
     background-image:linear-gradient(rgb(143, 143, 255), rgb(49, 240, 224));
     border-radius: 20px;
     margin-top: 20px;
     cursor: pointer;
 }
 .prep-btn:hover{
-    width:45%;
-    height: 25vh;
+    width:40vw;
+    height: 35vh;
     opacity: .5;
 }

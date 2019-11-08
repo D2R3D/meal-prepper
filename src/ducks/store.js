@@ -8,8 +8,8 @@ const initialState ={
     name: '',
     author: '',
     category: '',
-    ingredients: [],
-    instructions: [],
+    ingredients: '',
+    instructions: '',
     recipe_img: '',
     recipes:[],
     input: ''
@@ -46,12 +46,12 @@ export const UPDATE_USER ='UPDATE_USER'
     
 
         case ADD_INGREDIENTS:
-            const newIngredients =[...state.ingredients, payload]
-            return {...state, ingredients: newIngredients};
+            // const newIngredients =[...state.ingredients, payload]
+            return {...state, ingredients: payload};
 
         case ADD_INSTRUCTIONS:
-            const newInstructions =[...state.instructions, payload]
-            return {...state, instructions: newInstructions}
+            // const newInstructions =[...state.instructions, payload]
+            return {...state, instructions: payload}
     
       
         case ADD_RECIPE:
@@ -90,22 +90,6 @@ export function updateUser (user) {
     }
 }
 
-// export function createRecipe(recipe){
-//     return {
-//         type: ADD_RECIPE,
-//         payload: recipe
-        
-//     } 
-//    }
-
-// export function createRecipe({title, author, category, ingredients, instructions}){
-//     return (dispatch) => {
-//         return axios.post(`/user/addRecipe`, {title, author, category, ingredients, instructions}).then(response => {
-//             dispatch(addRecipe(response.data))
-//         })
-//     }
-
-// }
 
 export function createRecipe (recipes){
     return{

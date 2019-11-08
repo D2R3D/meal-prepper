@@ -11,7 +11,7 @@ const register = async (req, res) => {
     const hashPass = bcrypt.hashSync(password, salt)
     const newUser = await db.register_user([username, email, hashPass, profile_pic])
     const user = newUser[0]
-    req.session.user = {user}
+    req.session.user = user
     res.status(200).send({message: `Welcome ${username}`, user: req.session.user, loggedIn: true})
 
 }
@@ -31,7 +31,7 @@ const login = async (req, res) => {
     if(authedPassword) {
         delete foundUser[0].password;
         const user = foundUser[0]
-        req.session.user = {user}
+        req.session.user = user
         res.status(200).send({message: `Welcome Back ${username}`, user: req.session.user, loggedIn: true}); 
     }
     else {

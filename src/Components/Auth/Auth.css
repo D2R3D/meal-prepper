@@ -1,7 +1,7 @@
 .auth-box {
     height: 100vh;
     width: 100vw;
-    background: rgb(71, 34, 59);
+    background: rgb(124, 18, 18);
     display: flex;
     justify-content: center;
 }
@@ -10,8 +10,8 @@
 
 .register-box{
     height: 50vh;
-    width: 60vw;
-    background: rgb(125, 218, 255);
+    width: 30vw;
+    background: rgb(0, 183, 255);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -30,9 +30,9 @@ margin-top: 5px;
 
 @media(max-width: 400px) {
     .register-box{
-        height: 20vh;
+        height: 40vh;
         width: 60vw;
-        background: rgb(32, 102, 102);
+        background: rgb(24, 158, 158);
         display: flex;
         flex-direction: column;
         justify-content: space-around;

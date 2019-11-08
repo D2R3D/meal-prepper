@@ -1,41 +1,93 @@
 .recipe-box{
-    width: 40vw;
-    height: 55vh;
+    width: 25vw;
+    height: 60vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     overflow: scroll;
     justify-content: space-around;
-    background: rgb(201, 255, 201);
-    border: 2px solid rgb(0, 0, 0);
+    background:#8C081C;
+    border: 1px solid black;
     margin: 15px;
     border-radius: 20px;
-    box-shadow: 10px 10px rgba(119, 118, 118, 0.582);
+    box-shadow: 10px 10px 3px 3px rgb(243, 212, 129);
+}
+
+.title-box{
+    width: 20vw;
+    height: 8vh;
+    background: #EAC8C0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-self: center;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 2px;
+    
+    
 }
 
 .recipe-card{
-    width: 30vw;
-    height: 40vh;
-    background: lightcoral;
+    width: 25vw;
+    height: 30vh;
+    background:#EAC8C0;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;;
+    justify-content: space-evenly;;
     border-radius: 20px;
+    align-self: center;
+
+  
 }
+
+
 
 
 .list{
-    width: 20vw;
-    height: 15vh;
-    background: rgb(154, 154, 250);
+    width: 23vw;
+    height: 18vh;
+    background: #8C081C;
     border-radius: 20px;
+    margin-left: 1vw;
+    align-self: center;
+    color: yellow;
+
 }
 
 #recipe-img{
-    width: auto;
-    height: auto;
+    width: 15vw;
+    height: 25vh;
     border-radius: 10px;
+    align-self: center;
+    margin-top: 5px;
+
     
 }
-#recipe-img:hover{
+/* #recipe-img:hover{
 
+} */
+
+@media(max-width: 500px) {
+    .recipe-box{
+        width: 400px;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+
+    }
+    #recipe-img{
+        width: 150px;
+        height: 150px;
+        align-self: flex-start;
+    }
+    .recipe-card{
+        width: 70vw;
+        height: 50vh;
+        align-self: center;
+
+    }
+    .list{
+        width: 50vw;
+        height: 20vh;
+    }
 }

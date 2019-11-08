@@ -10,34 +10,24 @@ class Profile extends Component {
         super(props)
         this.state ={
             favorite_foods: [],
-            input: ''
+       
         }
     }
 
-    handleChange(val) {
+    handleChange = (e, key) => {
         this.setState({
-          input: val
+          [key]: e.target.value
         });
-      }
-
-    favFoods = (id) => {
-        const {favorite_foods} = this.state
-        axios.put(`/user/foods/${id}`, {favorite_foods}).then(res => {
-        this.props.updateUser(res.data.user.id)
-       }).catch((err) => console.log(err))
-        
-    }
+      };
 
 
     render() {
     
-            const mapFoods = this.state.favorite_foods.map((food, i) => {
-                return <li key={i}>{food}</li>
-            })
         return (
             <div className ='profile-box'>
-                <div className ='prof-pic'>
-                    <img src ={this.props.user.user.profile_pic} alt='prof-pic'></img>
+                <div className ='prep-btn'>
+                    <img src ={this.props.user.profile_pic} alt='prof-pic'></img>
+                    <button> edit image </button>
                 </div>
                 <div>
                     <Link to='/browse'><button className='prep-btn'>Begin Prepping</button></Link>
@@ -50,15 +40,6 @@ class Profile extends Component {
                 <div>
                     <Link to ='/my-recipes'><button className='prep-btn'>My Recipes</button></Link>
 
-                </div>
-                <div>
-                    <p>{mapFoods}</p>
-                    
-                    <input type ='text'
-                           value={this.state.input}
-                           placeholder='favorite foods'
-                           onChange ={e => this.handleChange(e.target.value)}></input>
-                    <button onClick ={() =>this.favFoods()}> Save </button>
                 </div>
                 
             </div>

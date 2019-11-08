@@ -3,15 +3,14 @@ import axios from "axios";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import store, {
-  createRecipe,
-  addIngredients,
-  addInstructions,
+  createRecipe
+
   // UPDATE_NAME,
   // ADD_IMG,
   // UPDATE_AUTHOR,
   // UPDATE_CATEGORY,
-  ADD_INGREDIENTS,
-  ADD_INSTRUCTIONS,
+  // ADD_INGREDIENTS,
+  // ADD_INSTRUCTIONS,
   // ADD_RECIPE
 } from "../../ducks/store";
 import "./Recipe.css";
@@ -39,7 +38,8 @@ class Recipe extends Component {
         author: reduxState.author,
         category: reduxState.category,
         ingredients: reduxState.newIngredients,
-        instructions: reduxState.newInstructions
+        instructions: reduxState.newInstructions,
+        recipe_img: reduxState.recipe_img
         // recipes: reduxState.recipes
       });
     });
@@ -59,24 +59,6 @@ class Recipe extends Component {
       category: catVal
     });
   }
-
-  handleInstructions() {
-    store.dispatch({
-      type: ADD_INSTRUCTIONS,
-      payload: this.state.instructions
-    }); this.setState({instructions: ''})
-  }
-
-  handleIngredients(){
-    store.dispatch({
-      type: ADD_INGREDIENTS,
-      payload: this.state.ingredients
-    }); this.setState({ingredients: ''})
-  };
-
-  // addIngredient(val) {
-  //   this.props.addIngredients(val)
-  // }
 
   submitRecipe = async id => {
     const {
@@ -101,32 +83,19 @@ class Recipe extends Component {
 
 
   render() {
-    // const {name, author, category ,ingredients, instructions} = this.state
-    // const mapIngredients = this.state.ingredients.map((element) => {
-    //   return <li key={element.id} ingredients={element}></li>
-    // })
-
-    // const mapInstructions = this.state.instructions.map((instructions, i) => {
-    //   return <li key={i}>{instructions}</li>
-    // })
-    return (
-      <div className="recipe-box">
-        <button
-          onClick={() => {
-            console.log(this.state);
-          }}
-        >
-          test
-        </button>
-
+    // const displayIng = this.state.ingredients
+    // const displayArr = displayIng.split(',')
+      return(
+      <div className="recipe-form">
         <div className="input-container">
+          Recipe Title
           <input
             type="text"
             placeholder="name"
             onChange={e => this.handleChange(e, "name")}
             value={this.state.name}
           ></input>
-
+          Author
           <input
             type="text"
             placeholder="author"
@@ -158,14 +127,8 @@ class Recipe extends Component {
               onChange={e => this.handleChange(e, "ingredients")}
               value={this.state.ingredients}
             ></input>
-            <button onClick={() => this.handleIngredients()} className="add-btn">
-              Add Ingredients
-            </button>
-            <div>
-              {/* <li>{this.state.ingredients.map((element) => {
-                return <ul key ={element.id} ingredient={element}></ul>
-              })}</li> */}
-            </div>
+    
+      
 
             <input
               type="text"
@@ -173,13 +136,7 @@ class Recipe extends Component {
               onChange={e => this.handleChange(e, "instructions")}
               value={this.state.instructions}
             ></input>
-            <button
-              onClick={() => this.handleInstructions()}
-              className="add-btn"
-            >
-              {/* <li>{mapInstructions}</li> */}
-              Add Instructions
-            </button>
+  
           </div>
 
           <div>
@@ -191,8 +148,8 @@ class Recipe extends Component {
             ></input>
           </div>
           <Link to="/my-recipes">
-            <button onClick={() => this.submitRecipe()}>
-              Finish and Submit
+            <button className ='add-btn' onClick={() => this.submitRecipe()}>
+              Submit
             </button>
           </Link>
         </div>
@@ -209,6 +166,6 @@ function mapStateToProps(reduxState) {
 export default withRouter(
   connect(
     mapStateToProps,
-    { createRecipe, addIngredients, addInstructions }
+    { createRecipe }
   )(Recipe)
 );

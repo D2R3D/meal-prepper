@@ -10,14 +10,14 @@ export default class Dashboard extends Component {
         }
     }
 
-    componentDidMount = () => {
-        this.getRecipes()
-    }
-    getRecipes(id) {
-        axios.get(`/user/dashboard/${id}`).then(response => {
-            this.setState({recipes: response.data})
-        })
-    }
+    // componentDidMount = () => {
+    //     this.getRecipes()
+    // }
+    // getRecipes(id) {
+    //     axios.get(`/user/dashboard/${id}`).then(response => {
+    //         this.setState({recipes: response.data})
+    //     })
+    // }
 
 
 

@@ -9,6 +9,7 @@ const userCtrl = require('./UserController')
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 const app = (express())
 
+app.use(express.static(`${__dirname}/../build`))
 app.use(express.json())
 app.use(cors())
 app.use(session({
@@ -24,12 +25,13 @@ app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
 app.delete('/auth/logout', authCtrl.logout)
 
-app.put('/user/foods/:id', userCtrl.favFoods)
+// app.post('/user/dashboard/:id', userCtrl.cookList)
 app.post(`/user/addRecipe/:id`, userCtrl.submitRecipe)
-app.get('/user/dashboard/:id', userCtrl.dashboardRecipes)
+// app.get('/user/dashboard/:id', userCtrl.dashboardRecipes)
 app.get('/user/allRecipes', userCtrl.allRecipes)
 app.get('/user/recipes' , userCtrl.userRecipes)
-
+app.put('/user/recipes/update/:id', userCtrl.editRecipe)
+app.delete('/user/recipe/:id', userCtrl.removeRecipe)
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db)

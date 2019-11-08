@@ -8,6 +8,7 @@ import AddRecipe2 from './Components/Recipe/AddRecipe2'
 import UserRecipes from './Components/UserRecipes/UserRecipes'
 import AddRecipe3 from './Components/Recipe/AddRecipe3'
 import Recipe from './Components/Recipe/Recipe'
+import EditRecipe from './Components/EditRecipe/EditRecipe'
 
 
 import {Switch, Route} from 'react-router-dom'
@@ -24,5 +25,6 @@ export default (
     <Route path ='/my-recipes' component={UserRecipes} />
     <Route path ='/recipe-step-3' component={AddRecipe3} />
     <Route path ='/add-recipe' component={Recipe} />
+    <Route path ='/edit/recipe/:id' component ={EditRecipe} />
 </Switch>
 )
